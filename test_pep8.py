@@ -4,7 +4,8 @@ import re
 
 
 def get_flake8_codes():
-    os.system('flake8 --statistics -qq . > flake8_output')
+    files = ['files.py', 'geometry.py', 'main.py', 'miscellaneous.py']
+    os.system(f"flake8 --statistics -qq {' '.join(files)} > flake8_output")
     with open('flake8_output', 'r') as f:
         flake8_output = f.read()
         codes = set(re.findall('([A-Z][0-9][0-9][0-9])', flake8_output))
