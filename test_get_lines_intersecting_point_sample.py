@@ -1,20 +1,20 @@
 import math
 import pickle
 
-from geometry import is_line_vertical
+from geometry import get_lines_intersecting_point
 
 
-def read(input_file='is_line_vertical_sample'):
+def read(input_file='get_lines_intersecting_point_sample'):
     with open(f'./tests/data/{input_file}.pkl', 'rb') as f:
         rows = pickle.load(f)
     return rows
 
 
-def test_is_line_vertical_sample():
+def test_get_lines_intersecting_point_sample():
     rows = read()
     for row in rows:
         args, res = row[:-1], row[-1]
-        res_hat = is_line_vertical(*args)
+        res_hat = get_lines_intersecting_point(*args)
         if res_hat is None or res is None:
             assert res_hat == res, args
         elif type(res) is tuple:
