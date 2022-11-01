@@ -1,10 +1,10 @@
 import math
 import pickle
 
-from geometry import is_point_on_the_line
+from geometry import is_point_on_line
 
 
-def read(input_file='is_point_on_the_line_sample'):
+def read(input_file='is_point_on_line_sample'):
     with open(f'./tests/data/{input_file}.pkl', 'rb') as f:
         rows = pickle.load(f)
     return rows
@@ -20,11 +20,11 @@ def flatten(data):
         return (data,)
 
 
-def test_is_point_on_the_line_sample():
+def test_is_point_on_line_sample():
     rows = read()
     for row in rows:
         args, res = row[:-1], row[-1]
-        res_hat = is_point_on_the_line(*args)
+        res_hat = is_point_on_line(*args)
         if res_hat is None or res is None:
             assert res_hat == res, args
         elif type(res) is tuple:
