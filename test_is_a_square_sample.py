@@ -1,10 +1,10 @@
 import math
 import pickle
 
-from geometry import get_intersecting_line_segment
+from geometry import is_a_square
 
 
-def read(input_file='get_intersecting_line_segment_sample'):
+def read(input_file='is_a_square_sample'):
     with open(f'./tests/data/{input_file}.pkl', 'rb') as f:
         rows = pickle.load(f)
     return rows
@@ -20,11 +20,11 @@ def flatten(data):
         return (data,)
 
 
-def test_get_intersecting_line_segment_sample():
+def test_is_a_square_sample():
     rows = read()
     for row in rows:
         args, res = row[:-1], row[-1]
-        res_hat = get_intersecting_line_segment(*args)
+        res_hat = is_a_square(*args)
         if res_hat is None or res is None:
             assert res_hat == res, args
         elif type(res) is list:

@@ -27,6 +27,9 @@ def test_are_line_segments_parallel_sample():
         res_hat = are_line_segments_parallel(*args)
         if res_hat is None or res is None:
             assert res_hat == res, args
+        elif type(res) is list:
+            for r, r_hat in zip(res, res_hat):
+                assert r == r_hat
         elif type(res) is tuple:
             res = flatten(res)
             res_hat = flatten(res_hat)
