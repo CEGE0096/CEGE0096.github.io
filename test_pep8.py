@@ -2,40 +2,57 @@
 import os
 import re
 
+flake8_codes = None
 
-def get_flake8_codes():
+
+def run_flake8():
+    global flake8_codes
     files = ['files.py', 'geometry.py', 'main.py', 'miscellaneous.py']
     os.system(f"flake8 --statistics -qq {' '.join(files)} > flake8_output")
     with open('flake8_output', 'r') as f:
         flake8_output = f.read()
-        codes = set(re.findall('([A-Z][0-9][0-9][0-9])', flake8_output))
+        # assign the set to the global flake8_codes
+        flake8_codes = set(re.findall('([A-Z][0-9][0-9][0-9])', flake8_output))
     os.system('rm flake8_output')
-    return codes
 
 
 def test_function_names():
-    assert 'N802' not in get_flake8_codes()
+    if flake8_codes is None:
+        run_flake8()
+    assert 'N802' not in flake8_codes
 
 
 def test_variable_names():
-    assert 'N806' not in get_flake8_codes()
+    if flake8_codes is None:
+        run_flake8()
+    assert 'N806' not in flake8_codes
 
 
 def test_variable_assigned_but_never_used():
-    assert 'F841' not in get_flake8_codes()
+    if flake8_codes is None:
+        run_flake8()
+    assert 'F841' not in flake8_codes
 
 
 def test_class_variable_names():
-    assert 'N801' not in get_flake8_codes()
+    if flake8_codes is None:
+        run_flake8()
+    assert 'N801' not in flake8_codes
 
 
 def test_first_argument_classes():
-    assert 'N805' not in get_flake8_codes()
+    if flake8_codes is None:
+        run_flake8()
+    assert 'N805' not in flake8_codes
 
 
 def test_function_names_underscores():
-    assert 'N807' not in get_flake8_codes()
+    if flake8_codes is None:
+        run_flake8()
+    assert 'N807' not in flake8_codes
 
 
 def test_blank_line_end_file():
-    assert 'W391' not in get_flake8_codes()
+    if flake8_codes is None:
+        run_flake8()
+    assert 'W391' not in flake8_codes
