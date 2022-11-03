@@ -4,7 +4,7 @@ import pickle
 from geometry import are_line_segments_intersecting_on_a_line_segment
 
 
-def read(input_file='are_line_segments_intersecting_on_a_segment_sample'):
+def read(input_file='are_line_segments_intersecting_on_a_line_segment_sample'):
     with open(f'./tests/data/{input_file}.pkl', 'rb') as f:
         rows = pickle.load(f)
     return rows
@@ -20,7 +20,7 @@ def flatten(data):
         return (data,)
 
 
-def test_are_line_segments_intersecting_on_a_segment_sample():
+def test_are_line_segments_intersecting_on_a_line_segment_sample():
     rows = read()
     for row in rows:
         args, res = row[:-1], row[-1]

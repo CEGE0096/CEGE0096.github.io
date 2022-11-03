@@ -1,10 +1,10 @@
 import math
 import pickle
 
-from geometry import are_line_segments_intersecting_on_a_line_segment
+from geometry import is_horizontal_positive_ray_intersecting_line_segment_on_edge_points
 
 
-def read(input_file='are_line_segments_intersecting_on_a_segment_sample'):
+def read(input_file='is_horizontal_positive_ray_intersecting_line_segment_on_edge_points_sample'):
     with open(f'./tests/data/{input_file}.pkl', 'rb') as f:
         rows = pickle.load(f)
     return rows
@@ -20,11 +20,11 @@ def flatten(data):
         return (data,)
 
 
-def test_are_line_segments_intersecting_on_a_segment_sample():
+def test_is_horizontal_positive_ray_intersecting_line_segment_on_edge_points_sample():
     rows = read()
     for row in rows:
         args, res = row[:-1], row[-1]
-        res_hat = are_line_segments_intersecting_on_a_line_segment(*args)
+        res_hat = is_horizontal_positive_ray_intersecting_line_segment_on_edge_points(*args)
         if res_hat is None or res is None:
             assert res_hat == res, args
         elif type(res) is list:
